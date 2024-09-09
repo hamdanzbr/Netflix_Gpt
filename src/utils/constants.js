@@ -2,6 +2,10 @@ export const LOGO_URL="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-8
 
 export const PHOTO="https://static.vecteezy.com/system/resources/thumbnails/000/439/863/small/Basic_Ui__28186_29.jpg"
 
+export const YOUTUBE_URL="https://www.youtube.com/embed/"
+
+export const IMAGE_CDN='https://image.tmdb.org/t/p/w780/'
+
 export const options = {
     method: 'GET',
     headers: {
