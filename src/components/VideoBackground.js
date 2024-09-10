@@ -12,7 +12,7 @@ const VideoBackground = ({movie_id}) => {
     
   return (
     <div className=' w-screen'>
-        <iframe className='w-screen  aspect-video'  src={YOUTUBE_URL+trailor?.key+"?autoplay=1&mute=1"}title="Borderlands (2024) Official Trailer - Cate Blanchett, Kevin Hart, Jack Black" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
+        <iframe className='w-screen  aspect-video'  src={YOUTUBE_URL+trailor?.key+"//?autoplay=1&mute=1//"}title="Borderlands (2024) Official Trailer - Cate Blanchett, Kevin Hart, Jack Black" allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
     </div>
   )
 }

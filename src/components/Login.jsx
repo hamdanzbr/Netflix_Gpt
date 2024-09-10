@@ -3,6 +3,7 @@ import Header from "./Header";
 import { Link, useNavigate } from "react-router-dom";
 import { checkValidData } from "../utils/validate";
 import useAuth from "../hooks/useAuth";
+import { BG_URL } from "../utils/constants";
 
 const Login = () => {
   const [isSignin, setIsSignin] = useState(true);
@@ -35,7 +36,7 @@ const Login = () => {
       <div className="absolute">
         <img
           className=""
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/04bef84d-51f6-401e-9b8e-4a521cbce3c5/null/IN-en-20240903-TRIFECTA-perspective_0d3aac9c-578f-4e3c-8aa8-bbf4a392269b_small.jpg"
+          src={BG_URL} 
           alt="movie img"
         />
       </div>

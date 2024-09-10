@@ -3,13 +3,16 @@ import React, { useEffect } from 'react'
 import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { LOGO_URL } from '../utils/constants';
+import { LOGO_URL, SUPPORTED_LANG } from '../utils/constants';
 import { addUser, removeUser } from '../utils/userSlice';
+import { showGptSearch } from '../utils/gptSlice';
+import { changeLanguage } from '../utils/languageSlice';
 
 const Header = () => {
 const navigate=useNavigate()
 const dispatch=useDispatch()
 const user=useSelector((store)=>(store.user))
+const gptStatus=useSelector(store=>store.gpt.gptMode)
 
   const handleSignout=()=>{
     signOut(auth).then(() => {
@@ -18,6 +21,17 @@ const user=useSelector((store)=>(store.user))
       // An error happened.
       navigate('/error')
     });
+  }
+
+  const handleGptSearch=()=>{
+    dispatch(showGptSearch())
+  }
+
+  const handleLanguage=(e)=>{
+    const value=e.target.value
+    // console.log(value);
+    dispatch(changeLanguage(value))
+    
   }
 
   useEffect(()=>{
@@ -41,8 +55,20 @@ const user=useSelector((store)=>(store.user))
   return (
     <div className='absolute w-full  bg-gradient-to-b from-black z-50 flex justify-between'>
         <img className='w-44 mx-28 my-4' src={LOGO_URL} alt="Logo" />
+        
        {user &&( 
         <div className='mt-10 flex gap-4'>
+          
+         {gptStatus &&(
+          <select className='h-10 rounded'onChange={handleLanguage}>
+            {SUPPORTED_LANG.map((language)=>(
+              <option key={language.identifier} value={language.identifier} >{language.name} </option>
+            ))}
+          </select>
+         )}
+          
+                  <button className={`text-white px-2 mb-6 rounded ${gptStatus? 'bg-green-800':'bg-red-700'}`} onClick={handleGptSearch}>{gptStatus?('Home'):('GPT Mode')}</button>
+
           <img className='h-10' src={user?.photoURL} alt="user-img" />
           <button className='bg-red-600 h-5 mr-7 ' onClick={handleSignout}>🔓</button>
         </div>)}
